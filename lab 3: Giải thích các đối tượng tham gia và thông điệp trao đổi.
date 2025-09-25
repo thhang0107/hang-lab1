@@ -1,0 +1,13 @@
+Giải thích đối tượng & thông điệp
+Đối tượng:
+-	Sinh viên (SV): người sử dụng hệ thống.
+-	Hệ thống ĐKMH (System): giao diện & xử lý logic.
+-	CSDL môn học (DB): lưu trữ thông tin môn học, slot, kết quả đăng ký.
+Thông điệp trao đổi
+1.	Sinh viên nhập tài khoản + mật khẩu → Hệ thống kiểm tra trên CSDL → Đăng nhập thành công.
+2.	Sinh viên chọn chức năng “Đăng ký môn học”.
+3.	Hệ thống lấy danh sách môn học từ CSDL và hiển thị cho sinh viên.
+4.	Sinh viên chọn môn muốn đăng ký.
+5.	Hệ thống kiểm tra slot trong CSDL.
+6.	Nếu hợp lệ, Hệ thống lưu đăng ký vào CSDL.
+7.	CSDL xác nhận thành công → Hệ thống thông báo “Đăng ký thành công”.
