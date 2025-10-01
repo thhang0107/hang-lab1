@@ -1,13 +1,42 @@
-Giải thích đối tượng & thông điệp
-Đối tượng:
--	Sinh viên (SV): người sử dụng hệ thống.
--	Hệ thống ĐKMH (System): giao diện & xử lý logic.
--	CSDL môn học (DB): lưu trữ thông tin môn học, slot, kết quả đăng ký.
-Thông điệp trao đổi
-1.	Sinh viên nhập tài khoản + mật khẩu → Hệ thống kiểm tra trên CSDL → Đăng nhập thành công.
-2.	Sinh viên chọn chức năng “Đăng ký môn học”.
-3.	Hệ thống lấy danh sách môn học từ CSDL và hiển thị cho sinh viên.
-4.	Sinh viên chọn môn muốn đăng ký.
-5.	Hệ thống kiểm tra slot trong CSDL.
-6.	Nếu hợp lệ, Hệ thống lưu đăng ký vào CSDL.
-7.	CSDL xác nhận thành công → Hệ thống thông báo “Đăng ký thành công”.
+1. Actors (Tác nhân)
+
+-Customer (Khách hàng)
+Là người trực tiếp sử dụng ATM.
+Thực hiện các thao tác: đưa thẻ, nhập PIN, chọn chức năng rút tiền, nhập số tiền, nhận tiền mặt và biên lai.
+Đây là tác nhân chính (primary actor) vì họ khởi tạo quy trình.
+-Bank System (Hệ thống ngân hàng)
+Đại diện cho hệ thống lõi của ngân hàng.
+Có vai trò xử lý các nghiệp vụ quan trọng:
+Xác thực PIN.
+Kiểm tra số dư tài khoản.
+Cập nhật giao dịch (ghi log, trừ tiền).
+Đây là tác nhân phụ (secondary actor) nhưng rất quan trọng vì quyết định thành công hay thất bại của giao dịch.
+
+2. Hệ thống ATM (ATM System)
+Được thể hiện trong sơ đồ như một hệ thống bao gồm nhiều use case.
+Các chức năng chính trong quy trình rút tiền:
+Login (Insert card & Enter PIN)
+Use case khởi đầu khi khách hàng đưa thẻ.
+Bao gồm bước nhập PIN và xác thực PIN với Bank.
+Verify PIN
+Là một use case con (<<include>>) được ATM gọi mỗi khi cần xác thực PIN.
+Nếu PIN sai → kết thúc quy trình, không cho phép rút tiền.
+Withdraw Cash
++) Use case chính của nghiệp vụ này.
+Bao gồm các bước:
+Nhập số tiền cần rút.
+ATM gửi yêu cầu đến Bank để kiểm tra số dư.
+Nếu đủ tiền → ATM nhả tiền và in biên lai.
+Nếu không đủ tiền → ATM báo lỗi.
+
+3. Các đối tượng trong Sequence Diagram
+Customer: gửi hành động đến ATM (Insert Card, Enter PIN, Request Withdraw).
+ATM: đóng vai trò trung gian, nhận yêu cầu từ khách hàng và chuyển tiếp đến Bank. Ngoài ra còn có nhiệm vụ:
+Hiển thị màn hình hướng dẫn.
+Nhả tiền mặt và in biên lai.
+Bank: xử lý logic nghiệp vụ, gồm:
+Nhận dữ liệu từ ATM (PIN, số tiền).
+Truy vấn tài khoản → xác thực thông tin.
+Kiểm tra số dư.
+Cập nhật kết quả giao dịch.
+Trả kết quả cho ATM.
