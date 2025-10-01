@@ -1,0 +1,43 @@
+# 🏦 ATM Project  
+## 📑 Lab 05 – Tích hợp, quản lý & Báo cáo  
+
+---
+
+### 👨‍🎓 Thông tin sinh viên
+- **Họ tên**: Nguyễn Văn A  
+- **MSSV**: 12345678  
+- **Lớp**: SE1234  
+- **Môn học**: Công nghệ phần mềm  
+
+---
+
+## 1. 🎯 Mục tiêu
+Hoàn thiện quy trình phần mềm từ **thiết kế → triển khai → quản lý**, cụ thể:  
+- Gom tất cả artifacts đã thực hiện ở các Lab trước.  
+- Viết báo cáo bằng Markdown/PDF mô tả quy trình.  
+- Quản lý source code & báo cáo bằng GitHub.  
+
+---
+
+## 2. 📂 Artifacts đã gom
+- **Use Case Diagram**: `../lab02-usecase/usecase-atm.png`  
+- **Sequence Diagram**: `../lab03-sequence/sequence-atm.png`  
+- **Form Login Code**: `../lab04-login/LoginForm.java`  
+
+---
+
+## 3. 🔄 Quy trình làm việc
+- **Lab 01**: Tạo profile cá nhân
+- **Lab 02**: Thiết kế Use Case Diagram cho hệ thống ATM.  
+- **Lab 03**: Thiết kế Sequence Diagram cho các chức năng chính (Rút tiền, Đăng nhập...).  
+- **Lab 04**: Viết code Form Login demo đăng nhập vào ATM.  
+- **Lab 05**: Tích hợp tất cả artifacts vào repo, viết Project Report, quản lý version bằng Git.  
+
+---
+
+## 4. 🔧 Quản lý & Báo cáo
+- Push toàn bộ artifacts + report lên GitHub:
+  ```bash
+  git add .
+  git commit -m "Lab 05 - Integration completed"
+  git push origin main
