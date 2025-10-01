@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - ABC Bank</title>
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-box {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
+      width: 360px;
+      padding: 35px 28px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-circle {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .logo-circle svg {
+      width: 36px;
+      height: 36px;
+      fill: #fff;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0d47a1;
+      letter-spacing: 1px;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px 14px;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .input-group:focus-within {
+      border: 1px solid #1976d2;
+      box-shadow: 0 0 6px rgba(25,118,210,0.4);
+    }
+
+    .input-group span {
+      font-family: "Material Symbols Outlined";
+      font-size: 22px;
+      margin-right: 10px;
+      color: #1976d2;
+    }
+
+    .input-group input {
+      border: none;
+      flex: 1;
+      padding: 8px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0 18px 0;
+      font-size: 14px;
+    }
+
+    .options label {
+      cursor: pointer;
+      color: #444;
+    }
+
+    .options a {
+      text-decoration: none;
+      color: #1976d2;
+      font-weight: 500;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .login-btn {
+      background: #90caf9;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    .login-btn.active {
+      background: #1976d2;
+      cursor: pointer;
+    }
+
+    .login-btn.active:hover {
+      background: #0d47a1;
+    }
+
+    .cancel-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #d32f2f;
+    }
+
+
+    #message {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 14px;
+      color: red;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+   
+    <div class="logo">
+      <div class="logo-circle">
+     
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2 1 7v2h22V7L12 2zm0 2.2 7.6 3.3H4.4L12 4.2zM4 11v9H2v2h20v-2h-2v-9h-2v9h-4v-9h-2v9h-4v-9H4z"/>
+        </svg>
+      </div>
+      <h2>ABC BANK</h2>
+    </div>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <span class="material-symbols-outlined">person</span>
+        <input type="text" id="username" placeholder="Tên đăng nhập">
+      </div>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">lock</span>
+        <input type="password" id="password" placeholder="Mật khẩu">
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" id="remember"> Nhớ đăng nhập</label>
+        <a href="#">Quên mật khẩu?</a>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" id="loginBtn" class="login-btn">Đăng nhập</button>
+        <button type="button" id="cancelBtn" class="cancel-btn">Hủy</button>
+      </div>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const message = document.getElementById("message");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+
+    function checkInputs() {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      if (username !== "" && password !== "") {
+        loginBtn.classList.add("active");
+      } else {
+        loginBtn.classList.remove("active"); 
+      }
+    }
+
+    usernameInput.addEventListener("input", checkInputs);
+    passwordInput.addEventListener("input", checkInputs);
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if (username === "" && password === "") {
+        message.style.color = "red";
+        message.textContent = "Vui lòng nhập Tên đăng nhập và Mật khẩu!";
+      } 
+      else if (username === "") {
+        message.style.color = "red";
+        message.textContent = "Vui lòng nhập Tên đăng nhập!";
+      } 
+      else if (password === "") {
+        message.style.color = "red";
+        message.textContent = "Vui lòng nhập Mật khẩu!";
+      } 
+      else {
+        message.style.color = "green";
+        message.textContent = "Đăng nhập thành công (demo hệ thống ngân hàng)";
+      }
+    });
+
+    cancelBtn.addEventListener("click", function() {
+      form.reset();
+      loginBtn.classList.remove("active");
+      message.textContent = "";
+    });
+  </script>
+</body>
+</html>
