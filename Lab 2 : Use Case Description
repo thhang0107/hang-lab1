@@ -1,0 +1,47 @@
+# Lab 02 – Phân tích yêu cầu & Thiết kế Use Case
+
+**Dự án:** Hệ thống ATM
+
+## **Use Case Diagram**
+*(Bạn có thể upload file .drawio hoặc ảnh diagram bên dưới repo)*
+
+---
+
+## **Use Case Description**
+
+### **Use Case 1: Rút tiền**
+- **Tên Use Case:** Rút tiền
+- **Mô tả:** Khách hàng rút tiền mặt từ tài khoản của mình thông qua ATM.
+- **Tác nhân:** Khách hàng
+- **Điều kiện tiên quyết:** Khách hàng có thẻ ATM hợp lệ và đã đăng nhập (PIN hợp lệ).
+- **Luồng chính:**
+  1. Khách hàng chèn thẻ ATM vào máy.
+  2. Nhập PIN để xác thực.
+  3. Chọn chức năng "Rút tiền".
+  4. Chọn số tiền muốn rút hoặc nhập số tiền.
+  5. Hệ thống kiểm tra số dư khả dụng.
+  6. Hệ thống phát tiền mặt và in biên lai.
+  7. Khách hàng nhận tiền và biên lai, kết thúc giao dịch.
+- **Luồng phụ / Ngoại lệ:**
+  - PIN nhập sai → hệ thống thông báo và yêu cầu nhập lại.
+  - Số dư không đủ → hệ thống thông báo và yêu cầu chọn lại số tiền.
+  - Máy hết tiền → hệ thống thông báo lỗi.
+- **Kết quả:** Tiền được rút thành công, số dư tài khoản cập nhật.
+
+---
+
+### **Use Case 2: Kiểm tra số dư**
+- **Tên Use Case:** Kiểm tra số dư
+- **Mô tả:** Khách hàng xem số dư hiện tại của tài khoản thông qua ATM.
+- **Tác nhân:** Khách hàng
+- **Điều kiện tiên quyết:** Khách hàng có thẻ ATM hợp lệ và đã đăng nhập (PIN hợp lệ).
+- **Luồng chính:**
+  1. Khách hàng chèn thẻ ATM.
+  2. Nhập PIN để xác thực.
+  3. Chọn chức năng "Kiểm tra số dư".
+  4. Hệ thống hiển thị số dư hiện tại.
+  5. Khách hàng in biên lai (nếu muốn) và kết thúc giao dịch.
+- **Luồng phụ / Ngoại lệ:**
+  - PIN nhập sai → hệ thống yêu cầu nhập lại.
+  - Máy gặp lỗi → thông báo lỗi, giao dịch không hoàn thành.
+- **Kết quả:** Khách hàng biết được số dư tài khoản hiện tại.
