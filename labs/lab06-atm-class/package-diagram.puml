@@ -1,0 +1,17 @@
+@startuml
+package UI {
+}
+
+package Controller {
+}
+
+package BankService {
+}
+
+package Hardware {
+}
+
+UI --> Controller
+Controller --> BankService
+Controller --> Hardware
+@enduml
